@@ -8,6 +8,6 @@ app.use(express.json());
 app.use('/artists', artistRouter);
 
 app.get('/', (req, res) => {
-  res.status(200).json({ result: `Hello world!` });
+  res.status(200).json(`Hello world!`);
 });
 module.exports = app;
