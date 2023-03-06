@@ -1,21 +1,14 @@
 const { Client } = require('pg');
-const path = require('path');
+const { decideEnv } = require('./env-helper');
 
 const loadEnv = () => {
-  const { NODE_ENV } = process.env;
-  if (NODE_ENV != 'production') {
-    const envFile = '../.env.test';
+  decideEnv();
 
-    require('dotenv').config({
-      path: path.join(__dirname, envFile),
-    });
+  const databaseName = process.env.PGDATABASE;
 
-    const databaseName = process.env.PGDATABASE;
+  delete process.env.PGDATABASE;
 
-    delete process.env.PGDATABASE;
-
-    return databaseName;
-  }
+  return databaseName;
 };
 
 const dropDatabase = async (databaseName) => {

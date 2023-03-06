@@ -1,18 +1,10 @@
 const { migrate } = require('postgres-migrations');
-const path = require('path');
+// const path = require('path');
+const { decideEnv } = require('./env-helper');
 
-const { NODE_ENV } = process.env;
+// This code is repeated a few times in our scripts. Can you factor it out into a shared helper function? **Done: the function decideEnv is it**
 
-// This code is repeated a few times in our scripts. Can you factor it out into a shared helper function?
-if (NODE_ENV != 'production') {
-  const args = process.argv.slice(2)[0];
-
-  const envFile = args === 'test' ? '../.env.test' : '../.env';
-
-  require('dotenv').config({
-    path: path.join(__dirname, envFile),
-  });
-}
+decideEnv();
 
 const { PGUSER, PGHOST, PGPASSWORD, PGDATABASE, PGPORT } = process.env;
 
