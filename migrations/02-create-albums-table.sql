@@ -8,11 +8,11 @@ CREATE TABLE Artists (
 );
 
 CREATE TABLE Albums (
-  album_id SERIAL,
+  id SERIAL,
   artist_id SERIAL,
   name VARCHAR(255) NOT NULL,
   year INT NOT NULL,
-  PRIMARY KEY(album_id),
+  PRIMARY KEY(id),
   CONSTRAINT fk_artist
     FOREIGN KEY(artist_id)
         REFERENCES Artists(id)

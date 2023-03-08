@@ -117,12 +117,14 @@ exports.deleteArtist = async (req, res) => {
 };
 
 exports.createAlbum = async (req, res) => {
-  const { name, genre, year, albumName } = req.body;
+  const { id } = req.params;
+  console.log(id);
+  const { year, albumName } = req.body;
 
   try {
     const queryOne = {
-      text: 'WITH new_user AS (INSERT INTO Artists(name, genre) VALUES ($1, $2) RETURNING id) INSERT INTO Albums (artist_id, name , year) SELECT id, $3, $4 FROM new_user RETURNING *',
-      values: [name, genre, albumName, year],
+      text: 'INSERT INTO Albums (artist_id,name, year) VALUES( $1, $2, $3) RETURNING *',
+      values: [id, albumName, year],
     };
 
     const {
