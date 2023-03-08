@@ -1,24 +1,56 @@
-### EXPRESS-MUSIC_LIBRARY SUMMARY
+# EXPRESS-MUSIC_LIBRARY SUMMARY
 
-## Description
+# Description
 
 This is a express backend application that creates Artists and Albums , updates and deletes. It works intergrated with `docker` with `PostgresSQL` database server.
 
-## Project Setup when recreating
+# DEPENDENCY INSTALLATION AFTER CLONE
 
-Create repository on github music-library
+1. Install dependencies
 
-Create a directory in your projects folder called music library
+```js
+npm install
+```
 
-Initialize a git repo with `git init`
+2. If you have `docker` installed on your computer run the following
+   command in your `terminal`, otherwise install docker and run command.
 
-Connect your project to your github repo
+```js
+docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=password -d postgres
+```
 
-Initialize a node project in your folder with `npm init -y`. This will create a default `package.json`
+This will pull and run a postgres image
 
-Create a `.gitignore` file. You can do this automatically with `npx gitignore` node. This will create a new file filled with common `.gitignore` entries.
+3. If you have `pgAdmin4` installed on your computer
+   Add a new server with the follewing details
 
-Set up `eslint` in this project with `npx eslint --init`. The resulting eslintrc.json should look like this.
+```js
+hostname: localhost;
+username: postgres;
+password: password;
+```
+
+4. Run tests with `npm test`
+5. Start serving with `npm serve`
+
+# Project Setup when recreating
+
+1. Create repository on github music-library
+
+2. Create a directory in your projects folder called music library
+
+3. Initialize a git repo with `git init`
+
+4. Connect your project to your github repo
+
+5. Initialize a node project in your folder with `npm init -y`.
+   This will create a default `package.json`
+
+6. Create a `.gitignore` file. You can do this automatically with `npx gitignore` node.
+   This will create a new file filled with common `.gitignore` entries.
+
+7. Set up `eslint` in this project with `npx eslint --init`.
+   The resulting eslintrc.json should look like this.
 
 ```json
 {
@@ -40,7 +72,8 @@ Set up `eslint` in this project with `npx eslint --init`. The resulting eslintrc
 }
 ```
 
-Create a new file called prettierrc.json to have the following
+8. Open you project folder in your `code editor` and create a new file called
+   prettierrc.json to have the following
 
 ```json
 {
@@ -51,15 +84,15 @@ Create a new file called prettierrc.json to have the following
 }
 ```
 
-Install express as a dependency
+9. Install express as a dependency
 
 ```js
 npm i -S express
 ```
 
-Make a folder in root called `src` and a file named `app.js` within it.
+10. Make a folder in root called `src` and a file named `app.js` within it.
 
-Put this in `app.js`.
+11. Put this in `app.js`.
 
 ```js
 // './src/app.js'
@@ -78,9 +111,8 @@ app.get('/', (req, res) => {
 module.exports = app;
 ```
 
-Create a file in your root folder called `index.js`
-
-Should look like this
+12. Create a file in your root folder called `index.js`
+    Should look like this
 
 ```js
 // index.js
@@ -95,18 +127,19 @@ app.listen(APP_PORT, () => {
 
 This will be serving our express app on port `4000` when node index.js is run
 
-## Setting up the Database
+### SETTING UP THE DATABASE
 
-Install `dotenv` as a dev dependency. dotenv is a package which lets us load environment variables from a file
+13. Install `dotenv` as a dev dependency. dotenv is a package which lets us
+    load environment variables from a file
 
 ```js
 npm i -D dotenv
 ```
 
-# ENV AND TEST ENV
+### ENV AND TEST ENV
 
-Make two files `.env` and `.env.test`
-Add this to your `.env`
+14. Make two files `.env` and `.env.test`
+    Add this to your `.env`
 
 ```js
 PGUSER = postgres;
@@ -117,13 +150,13 @@ PGPORT = 5432;
 PORT = 3000;
 ```
 
-Copy the same to your `.env.test` but change database to
+15. Copy the same to your `.env.test` but change database to
 
 ```js
 PGDATABASE = music_library_test;
 ```
 
-Change `APP_PORT` in `index.js` to the following.
+16. Change `APP_PORT` in `index.js` to the following.
 
 ```js
  // index.js
@@ -134,12 +167,6 @@ Change `APP_PORT` in `index.js` to the following.
 
 Now running your application should open port `3000` confirming that your env is working
 
+17. Add `.env.test` to your .gitignore file
+
 `Happy hacking....`
-
-### DEPENDENCY INSTALLATION AFTER CLONE
-
-Install dependencies
-
-```js
-npm install
-```
