@@ -3,7 +3,7 @@ const request = require('supertest');
 const db = require('../src/db');
 const app = require('../src/app');
 
-describe('Delete Artist', () => {
+describe('Delete Album', () => {
   let albums;
   beforeEach(async () => {
     const { rows } = await db.query(
@@ -30,7 +30,7 @@ describe('Delete Artist', () => {
       });
     });
 
-    it('returns a 404 if the artist does not exist', async () => {
+    it('returns a 404 if the album does not exist', async () => {
       const { status, body } = await request(app)
         .delete('/albums/90000')
         .send();
